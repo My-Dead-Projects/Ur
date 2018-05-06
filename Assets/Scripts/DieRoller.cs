@@ -23,6 +23,13 @@ public class DieRoller : MonoBehaviour
 		get { return _diceRolled; }
 	}
 
+	private TurnController _turnController;
+
+	void Start()
+	{
+		_turnController = GameObject.FindObjectOfType<TurnController>();
+	}
+
 	public void TurnEnded()
 	{
 		_diceRolled = false;
@@ -58,5 +65,11 @@ public class DieRoller : MonoBehaviour
 		}
 		
 		_diceRolled = true;
+
+		// If they rolled a zero, end the turn early
+		if (_currentRoll == 0)
+		{
+			_turnController.EndTurn();
+		}
 	}
 }

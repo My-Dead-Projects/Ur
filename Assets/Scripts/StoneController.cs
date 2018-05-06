@@ -7,7 +7,7 @@ public class StoneController : MonoBehaviour
 
 	public Tile StartingTile;
 	
-	private Tile _currentTile;
+	public Tile _currentTile;
 
 	public int PlayerNumber;
 	
@@ -24,6 +24,29 @@ public class StoneController : MonoBehaviour
 		
 		// Don't allow clicks until the turn starts
 		if (!_dieRoller.DiceRolled) return;
+		
+		
+
+		for (int i = 0; i < _dieRoller.CurrentRoll; i++)
+		{
+			if (_currentTile == null)
+			{
+				_currentTile = StartingTile;
+			}
+			else
+			{
+				_currentTile = _currentTile.NextTileForPlayer(PlayerNumber);
+			}
+
+			if (_currentTile == null)
+			{
+				// TODO: Move stone off board
+				return;
+			}
+		}
+		
+		Debug.Log(_currentTile.transform.position);
+		transform.position = _currentTile.transform.position;
 		
 		// For testing, end the turn now
 		_turnController.EndTurn();
