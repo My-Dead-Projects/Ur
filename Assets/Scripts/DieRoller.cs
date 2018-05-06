@@ -10,16 +10,22 @@ public class DieRoller : MonoBehaviour
 	public Sprite[] DieValueZeroSprites;
 
 	private int _currentRoll = 0;
+	
 	public int CurrentRoll
 	{
 		get { return _currentRoll; }
 	}
 	
 	private bool _diceRolled = false;
-
+	
 	public bool DiceRolled
 	{
 		get { return _diceRolled; }
+	}
+
+	public void TurnEnded()
+	{
+		_diceRolled = false;
 	}
 
 	public void RollDice()
