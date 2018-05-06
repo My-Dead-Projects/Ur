@@ -3,6 +3,8 @@
 public class StoneController : MonoBehaviour
 {
 	private DieRoller _dieRoller;
+
+	public Tile StartingTile;
 	
 	void Start ()
 	{
