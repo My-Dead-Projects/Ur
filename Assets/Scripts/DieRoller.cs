@@ -17,6 +17,11 @@ public class DieRoller : MonoBehaviour
 	
 	private bool _diceRolled = false;
 
+	public bool DiceRolled
+	{
+		get { return _diceRolled; }
+	}
+
 	public void RollDice()
 	{	
 		if (_diceRolled) return;
