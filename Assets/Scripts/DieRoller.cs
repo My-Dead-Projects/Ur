@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -17,9 +14,13 @@ public class DieRoller : MonoBehaviour
 	{
 		get { return _currentRoll; }
 	}
+	
+	private bool _diceRolled = false;
 
 	public void RollDice()
-	{
+	{	
+		if (_diceRolled) return;
+		
 		_currentRoll = 0;
 		
 		// The DieRoller has four child sprite elements for the four dice being rolled
@@ -39,6 +40,12 @@ public class DieRoller : MonoBehaviour
 			
 			// Pick a sprite at random from the appropriate set, and set the image to that sprite
 			image.sprite = sprites[Random.Range(0, 3)];
+			
+			// Before you roll, the sprites are silhouetted in black
+			// To be able to see the sprite, set it's color to white
+			image.color = Color.white;
 		}
+		
+		_diceRolled = true;
 	}
 }
